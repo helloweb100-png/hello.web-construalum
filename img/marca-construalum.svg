@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-100 -100 200 200" role="img" aria-label="Construalum">
+  <defs>
+    <g id="brazo" fill="#E31E24">
+      <rect x="-5" y="-72" width="10" height="48"/>
+      <polygon points="-16.7,-68.9 -21.8,-80 0,-88.9 22.2,-80 17.1,-68.9"/>
+    </g>
+  </defs>
+  <circle r="24.9" fill="none" stroke="#E31E24" stroke-width="8.4"/>
+  <use href="#brazo"/>
+  <use href="#brazo" transform="rotate(45)"/>
+  <use href="#brazo" transform="rotate(90)"/>
+  <use href="#brazo" transform="rotate(135)"/>
+  <use href="#brazo" transform="rotate(180)"/>
+  <use href="#brazo" transform="rotate(225)"/>
+  <use href="#brazo" transform="rotate(270)"/>
+  <use href="#brazo" transform="rotate(315)"/>
+</svg>
