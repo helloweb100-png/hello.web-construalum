@@ -252,7 +252,8 @@ html:not(.js) #loader, html.no-js #loader { display: none; }
 @media (min-width: 640px) { .hdr__cta { display: inline-flex; } }
 @media (min-width: 1024px) {
     :root { --hdr-h: 68px; }
-    .hdr__nav { display: flex; gap: 30px; margin-right: 12px; }
+    .hdr__nav { display: flex; gap: clamp(18px, 2.1vw, 30px); margin-right: 12px; }
+    .brand__tag { white-space: nowrap; }
     .burger { display: none; }
     .brand { margin-right: auto; }
 }
@@ -591,6 +592,17 @@ html:not(.js) #loader, html.no-js #loader { display: none; }
     .bx--e { grid-column: 7 / 13; grid-row: 3; }
 }
 
+/* ── 13b. CONSTRUCCIÓN EN GENERAL ───────────────────────────────────────── */
+.build { padding: clamp(80px, 12vw, 180px) 0; background: var(--ink-850); border-block: 1px solid var(--line); }
+.bento--build .bx { min-height: 360px; }
+.bento--build .bx:not(.bx--plain)::after { background: linear-gradient(180deg, rgba(6, 8, 12, .06) 0%, rgba(6, 8, 12, .42) 48%, rgba(6, 8, 12, .94) 100%); }
+.bx__body .link-arrow { justify-self: start; margin-top: 8px; }
+@media (min-width: 900px) {
+    .bento--build { grid-auto-rows: minmax(430px, auto); }
+    .bx--civil, .bx--ligera, .bx--alberca { grid-column: span 4; }
+    .bx--micro, .bx--steel { grid-column: span 6; }
+}
+
 /* ── 14. PROYECTOS ───────────────────────────────────────────────────────── */
 .projects { padding: clamp(80px, 12vw, 180px) 0; background: var(--ink-950); }
 .tabs { position: relative; display: flex; gap: 4px; margin-top: 34px; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
@@ -599,26 +611,16 @@ html:not(.js) #loader, html.no-js #loader { display: none; }
 .tab:hover, .tab.is-active { color: #fff; }
 .tabs__bar { position: absolute; left: 0; bottom: -1px; width: var(--w, 0); height: 2px; background: var(--red); transform: translateX(var(--x, 0)); transition: transform .6s var(--ease), width .6s var(--ease); }
 .tabpanel__lead { max-width: 56ch; margin: 30px 0 26px; color: var(--text-2); font-size: 1.08rem; }
-.gal { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.gal__it { min-height: 0; aspect-ratio: 4 / 5; }
-.gal__box { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: var(--r); background: var(--ink-800); }
+/* galería en columnas: cada <figure> declara su proporción con style="--ar:ancho/alto" y se acomoda sola */
+.gal { column-count: 2; column-gap: 12px; }
+.gal__it { break-inside: avoid; margin-bottom: 12px; }
+.gal__box { position: relative; width: 100%; aspect-ratio: var(--ar, 3 / 4); overflow: hidden; border-radius: var(--r); background: var(--ink-800); }
 .gal__box img { position: absolute; left: 0; top: -8%; width: 100%; height: 116%; max-width: none; object-fit: cover; transition: filter .6s; will-change: transform; }
 .gal__it:hover .gal__box img { filter: brightness(1.14) saturate(1.1); }
-/* móvil: la primera foto a todo el ancho; en residencial la última también */
-.gal__it--1, .gal--res .gal__it--4, .gal--com .gal__it { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
 .projects__cta { margin-top: clamp(32px, 5vw, 56px); }
 @media (min-width: 900px) {
-    .gal { grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: repeat(2, clamp(210px, 22vw, 330px)); gap: 14px; }
-    .gal__it, .gal__it--1, .gal--res .gal__it--4, .gal--com .gal__it { aspect-ratio: auto; grid-column: auto; }
-    /* residencial: 1 horizontal grande, 1 vertical alta, 2 verticales pequeñas */
-    .gal--res .gal__it--1 { grid-column: 1 / 7; grid-row: 1 / 3; }
-    .gal--res .gal__it--2 { grid-column: 7 / 11; grid-row: 1 / 3; }
-    .gal--res .gal__it--3 { grid-column: 11 / 13; grid-row: 1; }
-    .gal--res .gal__it--4 { grid-column: 11 / 13; grid-row: 2; }
-    /* comercial: 1 horizontal grande y 2 apiladas */
-    .gal--com .gal__it--1 { grid-column: 1 / 8; grid-row: 1 / 3; }
-    .gal--com .gal__it--2 { grid-column: 8 / 13; grid-row: 1; }
-    .gal--com .gal__it--3 { grid-column: 8 / 13; grid-row: 2; }
+    .gal { column-count: 3; column-gap: 14px; }
+    .gal__it { margin-bottom: 14px; }
 }
 
 /* ── 15. BANDA DE COTIZACIÓN ─────────────────────────────────────────────── */
